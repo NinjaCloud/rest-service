@@ -1,5 +1,6 @@
 package hello;
 
+import java.net.InetAddress;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +24,15 @@ public class UserController {
 		HttpSession session = request.getSession(true);
 		String sessionID = session.getId();
 		String callerIP = request.getRemoteAddr();
-		String host = request.getLocalAddr();
+//		String host = request.getServerName();
+
 		User user = new User();
 		user.setAccessTime(new Date());
 		user.setCallerIP(callerIP);
 		user.setSessionID(sessionID);
-		user.setHost(host);
 		try {
+			InetAddress ip = InetAddress.getLocalHost();
+			user.setHost("" + ip);
 			userRepository.saveAndFlush(user);
 		} catch (Exception exe) {
 			// ignore
