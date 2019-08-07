@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     deploy:
+       placement:
+         constraints: [node.role == manager]
+     environment:
+       MYSQL_ROOT_PASSWORD: docker
+       MYSQL_DATABASE: docker
+       MYSQL_USER: docker
+       MYSQL_PASSWORD: docker
+
+   spring:
+     depends_on:
+       - db
+     image: rajeshgheware/spring-db:1.0.0
+     ports:
+       - "8080:8080"
+     restart: always
+     deploy:
+       placement:
+         constraints: [node.role == worker]
+     environment:
+       spring.datasource.url: jdbc:mysql://db:3306/docker
+volumes:
+    db_data:
+
+
