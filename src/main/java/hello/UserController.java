@@ -25,11 +25,13 @@ public class UserController {
 		String sessionID = session.getId();
 		String callerIP = request.getRemoteAddr();
 //		String host = request.getServerName();
+		String originatingIP = request.getHeader("X-FORWARDED-FOR");
 
 		User user = new User();
 		user.setAccessTime(new Date());
 		user.setCallerIP(callerIP);
 		user.setSessionID(sessionID);
+		user.setOriginatingIP(originatingIP);
 		try {
 			InetAddress ip = InetAddress.getLocalHost();
 			user.setHost("" + ip);

@@ -20,6 +20,8 @@ public class User {
 	private String sessionID;
 	@Column
 	private String callerIP;
+	@Column
+	private String originatingIP;
 	@Id
 	@Column
 	private Date accessTime;
