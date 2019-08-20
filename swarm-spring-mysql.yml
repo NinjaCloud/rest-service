@@ -23,7 +23,7 @@ services:
        - "8080:8080"
      deploy:
        mode: replicated
-       replicas: 2
+       replicas: 5
        restart_policy: 
          condition: on-failure
        placement:

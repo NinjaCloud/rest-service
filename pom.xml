@@ -62,7 +62,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<jackson.version>2.9.0</jackson.version>
-		<docker.image.prefix>rajeshgheware</docker.image.prefix>
+		<docker.image.prefix>localhost:5000/rajeshgheware</docker.image.prefix>
 	</properties>
 
 	<build>
